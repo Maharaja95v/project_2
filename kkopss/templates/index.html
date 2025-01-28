@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Gopikaaaa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #8b5fbf;
+            --dark: #2a2a2a;
+            --light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce7f0, #f0e7fc);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #ff6b8b, #8b5fbf);
+            color: var(--light);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* background: linear-gradient(135deg, #ff6b6b, #ffd93d); */
+            color: white;
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-image.jpg') center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--light);
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: var(--secondary);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            text-align: center;
+            /* padding: 4em 2em; */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        .section.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+
+        .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .photo-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .photo-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .photo-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s, filter 0.3s;
+    }
+
+    .photo-item:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.9);
+    }
+
+    .photo-item:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(120deg, rgba(247, 143, 179, 0.6), rgba(243, 217, 250, 0.6));
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .photo-item:hover:after {
+        opacity: 1;
+    }
+
+        .chat-container {
+    border: 2px solid #ff758c;  /* Soft pink border */
+    border-radius: 20px;
+    padding: 1.8rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    height: 400px;
+    overflow-y: auto;
+    background: #fff5f6;  /* Very light pink background */
+    box-shadow: 0 6px 16px rgba(255, 117, 140, 0.12);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Georgia', serif;
+}
+
+.message {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 30px;
+    max-width: 70%;
+    word-wrap: break-word;
+    transition: all 0.3s ease;
+    position: relative;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.user-message {
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: #fff;
+    margin-left: auto;
+    text-align: right;
+}
+
+.user-message::before {
+    content: '♥';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff758c;
+    font-size: 1.2rem;
+}
+
+.bot-message {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: #fff;
+    margin-right: auto;
+    text-align: left;
+}
+
+.bot-message::before {
+    content: '♥';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff7eb3;
+    font-size: 1.2rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-container::-webkit-scrollbar {
+    width: 10px;
+    background-color: #fff5f6;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #ff758c, #ff7eb3);
+    border-radius: 20px;
+}
+
+.chat-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ff7eb3, #ff758c);
+}
+        /* Animated background */
+.timeline-section {
+    background: linear-gradient(-45deg, #8A2BE2, #FF69B4, #9400D3, #FF1493);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 3rem 1rem;
+    min-height: 100vh;
+    color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+/* Floating hearts background */
+.timeline-section::before {
+    content: '♥';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    color: rgba(255,255,255,0.1);
+    animation: hearts 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes hearts {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 0.3; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    animation: bounceIn 1s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.timeline-container {
+    max-width: 100%;
+    margin: 2rem auto;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.timeline {
+    display: flex;
+    position: relative;
+    padding: 4rem 0;
+    margin-top: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    gap: 2rem;
+}
+
+.timeline::-webkit-scrollbar {
+    display: none;
+}
+
+/* Glowing timeline line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    top: 2rem;
+    left: 0;
+    right: 0;
+    border-radius: 2px;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+}
+
+.timeline-item {
+    min-width: 400px;
+    max-width: 400px;
+    padding: 20px;
+    position: relative;
+    flex-shrink: 0;
+    transform-origin: center;
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.timeline-content {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 1.8rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transform: translateY(10px);
+    opacity: 0.9;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-top: 2rem;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.25);
+}
+
+/* Bouncing dot animation */
+.timeline-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #FF69B4;
+    border-radius: 50%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 2;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.timeline-item:hover .timeline-dot {
+    background: #FFB6C1;
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.3), 0 0 20px rgba(255,182,193,0.5);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.2); }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+.timeline-date {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+    color: #FFB6C1;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover .timeline-date {
+    transform: scale(1.1);
+    color: #FFF;
+}
+
+/* Fun scroll buttons */
+.scroll-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.scroll-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.scroll-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.2) rotate(360deg);
+}
+
+/* Content animations */
+.timeline-content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover p {
+    transform: translateX(5px);
+}
+
+.timeline-content ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.timeline-content li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover li {
+    transform: translateX(10px);
+}
+
+/* Add some sparkles */
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+.timeline-content::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 20px;
+    animation: sparkle 2s infinite;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        min-width: 300px;
+        max-width: 300px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+}
+.title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.scroll-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.scroll-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.scroll-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        min-width: 250px;
+    }
+}
+.floating-message {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    animation: floatMessage 15s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s ease-in-out;
+    transform-origin: center;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.floating-heart {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 999;
+    /* background: radial-gradient(circle, #FF69B4, #FF1493); */
+    border-radius: 50%;
+    animation: floatHeart 8s infinite ease-in-out;
+    /* box-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 20, 147, 0.6); */
+    transition: transform 0.3s ease, opacity 0.3s;
+    opacity: 0.9;
+}
+
+.floating-heart:hover {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 20, 147, 0.8);
+}
+
+.message-reveal {
+    position: fixed;
+    background: linear-gradient(135deg, #FF69B4, #8A2BE2);
+    color: white;
+    font-size: 1rem;
+    padding: 1.2rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    max-width: 250px;
+    text-align: center;
+    z-index: 1001;
+    animation: fadeInOut 4s forwards;
+    opacity: 0.9;
+    transform: scale(0.9);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.message-reveal:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@keyframes floatMessage {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-10vw, -20vh) scale(1.1); }
+    50% { transform: translate(15vw, -10vh) scale(0.9); }
+    75% { transform: translate(-5vw, -25vh) scale(1.2); }
+    100% { transform: translate(10vw, -30vh) scale(1); }
+}
+
+@keyframes floatHeart {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    25% { transform: translate(-20px, -30px) rotate(15deg) scale(1.1); }
+    50% { transform: translate(30px, -50px) rotate(-15deg) scale(1.2); }
+    75% { transform: translate(-15px, -40px) rotate(10deg) scale(1.1); }
+    100% { transform: translate(0, -60px) rotate(0deg) scale(1); }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.8); }
+    10% { opacity: 1; transform: scale(1); }
+    90% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome Gopika</h1>
+        <p> Buckle up for the Sweet Ride!</p>
+    </header>
+    <section id="kdrama" class="section timeline-section">
+        <h2 class="title">From Notes to Forever: Our Journey ✨</h2>
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 1: The Xerox Chronicles (Jan 2023 - March 2023)</div>
+                        <p>Plot twist: A simple request for notes turned into the beginning of our story! There I was, the not-so-mighty, slightly sick guy (more like a walking bundle of nerves 😅), completely unaware that this two-minute xerox encounter would xerox its way into destiny. Spoiler alert: She turned out to be not just someone, but THE someone special! 🌟</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 2: The Great SJT Miss-tery (May 2023)</div>
+                        <p>After conquering the microcontroller test (barely!), came our first almost-meet-cute! Picture this: Me, waiting outside SJT for 20 minutes like a hopeful puppy, while you were inside playing your own waiting game. Talk about being in the right place at the wrong time! 🏫 The universe pulled a "not yet" card on us, sending me off to holiday freedom while you got stuck with an extra week of campus life (sorry not sorry! 😆 lolllll)</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 3: The Naruto Summer (June 2023 - July 2023)</div>
+                        <p>Enter the holiday season, where you unlocked achievement: "Turn Him Into a Naruto Fan"! 🍜 Your messages became the highlight reel of my days - better than any anime plot twist (and that's saying something!). Forever grateful for introducing me to the best series ever. Believe it! 🌟</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 4: The Biryani Chronicles (Aug 2023 - Dec 2023)</div>
+                        <p>First psychology class: There I was, nervous enough to write a thesis on anxiety, when in walked an angel in blue polka dots and jeans! Suddenly, everything made sense (unlike psychology 😅).</p>
+                        <p>✨ Greatest Hits of the Season ✨</p>
+                        <ul>
+                            <li>🍚 The Kerala Restaurant Saga: Where we discovered biryani that would make Master Chef judges weep!</li>
+                            <li>🎬 The LEO Adventure: A movie date with a backstory spicier than the biryani we had after (IYKYK 😉)</li>
+                            <li>👗 The Tara Maa Mission: Turned into a Darling discovery, where my "best biryani" recommendation got brutally rated "average" by the food critic in you! But hey, at least your white floral dress that day was anything but average - it was absolutely stunning! 🌸</li>
+                            <li>📚 The CC Teaching Chronicles: Every morning became a mission - study, teach, repeat! Who knew being your teacher would become the happiest chapter of my college story? Library sessions that were less about coding and more about coding our way into each other's hearts! ❤️</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 5: Birthday Magic & Airport Goodbyes (Jan 2024 - July 2024)</div>
+                        <p>Started with your birthday where I nervously presented my masterpiece (aka your drawing) - thank goodness you liked it! 🎨 Our celebration tour included the magnificent Mandi expedition and a sweet finale at the gelato parlor. The semester flew by with projects and placement preparations, culminating in that bittersweet Chennai airport drop-off - a moment that felt like a scene straight out of a movie! ✈️</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Chapter 6: The Distance Dance (July 2024 - Now)</div>
+                        <p>Cue the dramatic music! 🎭 Watching you leave was like watching my favorite show go on hiatus - nights turned into thought marathons about the miles between us.</p>
+                        <p>Plot twist: You moved to Bangalore (yay!), I was job hunting (stress!), then I got Bangalore too (double yay!)... but wait, was that not in the script? 🤔 Sometimes even the best plot twists need time to be appreciated!</p>
+                        <p>Then came the Hyderabad chapter (aka Distance: The Sequel), which proved that hearts grow fonder even when cities grow farther! 💕</p>
+                        <p>And now? You're back in Bangalore, making me the second-happiest person in the world (because obviously, you're the first! 😊). Our weekend lunch-dinner adventures have become my favorite routine - who knew regular could feel so extraordinary? ✨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-buttons">
+            <button class="scroll-btn" onclick="scrollTimeline('left')">←</button>
+            <button class="scroll-btn" onclick="scrollTimeline('right')">→</button>
+        </div>
+    </section>
+    
+
+    <section id="flirtyBot" class="section">
+        <h2 class="section-title">Chat with Mystery person..</h2>
+        <div class="card">
+            <div class="chat-container" id="chatMessages"></div>
+            <input type="text" id="userInput" placeholder="Say something...">
+            <button class="button" onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <h2 class="section-title">Photo & Video Gallery</h2>
+        <div class="photo-gallery">
+            <div class="photo-item"><img src="static/1000002250-01.jpeg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20231125-WA0008.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20231125-WA0017.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20231125-WA0018.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20240113-WA0020.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20240124-WA0007.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20240125-WA0011.jpg" alt="Memory"></div>
+            <div class="photo-item"><img src="static/IMG-20240323-WA0029.jpg" alt="Memory"></div>
+        </div>
+    </section>
+
+    <section id="confession" class="section">
+        <h2 class="section-title">A Little Secret I've Been Keeping...</h2>
+        <div class="card">
+            <p>Everytime I see you this is what goes on in my mind.</p>
+            <button class="button" id="turnAroundButton">Turn Around</button>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById("turnAroundButton").addEventListener("click", function() {
+            // Open the YouTube link in a new tab
+            window.open("https://youtu.be/8zknRr_fjB4?si=ivalryuvTrXF4VnL", "_blank");
+        });
+    </script>
+
+    <script>
+        const sections = document.querySelectorAll('.section');
+        
+        const revealSection = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        };
+
+        const sectionObserver = new IntersectionObserver(revealSection, {
+            root: null,
+            threshold: 0.15
+        });
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+        const flirtyResponses = [   "If love was a video game, you'd be the unbeatable boss!","Are you a magician? Because whenever I look at you, everyone else disappears!",  "If love was biryani, you'd be the perfect spice blend!"];
+        
+        const loveMessages = [
+            "If our journey was a syllabus, you'd be the chapter I’d happily reread every time.",
+            "Remember when I gave you my xerox notes? Little did that skinny guy know you’d turn out to be the best plot twist of my life.",
+            "Our first 'almost meet' outside SJT deserves its own sitcom episode—classic miscommunication gold!",
+            "You recommending Naruto wasn’t just a suggestion; it was life-changing advice. Believe it!",
+            "Teaching you CC in the library? Highlight of my semester. Never felt so productive in my life!",
+            "If our first psychology class was a movie, I’d call it 'Nervous Guy Meets Blue-Dotted Top Girl.' Instant blockbuster.",
+            "That Kerala restaurant’s biryani was amazing, but honestly, the company was even better.",
+            "Watching LEO with you? A cinematic masterpiece paired with the best inside jokes. 10/10 would watch again.",
+            "That time we went to 'Darling' for briyani, and you called it average? Still iconic. Never letting you forget that floral dress, though!",
+            "If holidays had highlights, your messages would be mine. Best notifications ever.",
+            "Your birthday drawing? Hands down the scariest deadline I've ever had, but so worth it for your reaction.",
+            "Dropping you off at the airport? Bitter-sweetest moment ever. Who knew Chennai traffic could be so emotional?",
+            "When you moved to Bangalore, I thought life couldn’t get better. Then you moved to Hyderabad, and I thought, 'Not again!'",
+            "You're like my Bangalore weekends—always the best part of the routine.",
+            "If long-distance emotions were a skill, I'd be at expert level by now. Thanks for the practice!",
+            "Every time you came back to Bangalore, it felt like the universe hit the 'refresh' button on happiness.",
+            "If memories were a game, our outings would be the bonus levels—unexpected, exciting, and always worth it.",
+            "You’re like the perfect Python script—simple, elegant, and always runs flawlessly in my life.",
+            "Even teaching CC was fun because you made it feel like I was solving the world’s greatest puzzle every day.",
+            "You’re the only teammate I’d pick for life’s toughest projects—because with you, even the tough stuff feels manageable."
+        ];
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="#FF69B4">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            `;
+            
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            heart.style.left = `${startX}px`;
+            heart.style.top = `${startY}px`;
+            
+            heart.addEventListener('click', () => {
+                showMessage(loveMessages[Math.floor(Math.random() * loveMessages.length)], startX, startY);
+            });
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+        function showMessage(text, x, y) {
+            const message = document.createElement('div');
+            message.className = 'message-reveal';
+            message.textContent = text;
+            message.style.left = `${x}px`;
+            message.style.top = `${y}px`;
+            document.body.appendChild(message);
+
+            // Function to remove the message when the cursor moves away
+            function removeMessage() {
+                message.remove();
+                document.removeEventListener('mousemove', removeMessage);
+            }
+
+            // Attach an event listener to remove the message on cursor movement
+            document.addEventListener('mousemove', removeMessage);
+        }
+        setInterval(createFloatingHeart, 2000);
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chat = document.getElementById('chatMessages');
+
+            if (input.value.trim() === '') return;
+
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = input.value;
+            chat.appendChild(userMessage);
+
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.textContent = flirtyResponses[Math.floor(Math.random() * flirtyResponses.length)];
+                chat.appendChild(botMessage);
+            }, 1000);
+
+            input.value = '';
+        }
+        function scrollTimeline(direction) {
+            const timeline = document.querySelector('.timeline');
+            const scrollAmount = 300;
+            if (direction === 'left') {
+                timeline.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else {
+                timeline.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatContainer = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+
+            function displayMessage(message, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('chat-message', `${sender}-message`);
+                messageDiv.textContent = message;
+                chatContainer.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight; // Keep scroll at bottom
+            }
+            //Initial bot message
+                displayMessage("Ah, hello there, Gopika. It is a pleasure to meet a lady as radiant as yourself, especially on such a momentous occasion as your birthday. Tell me, how may I make this day even more extraordinary for you?", 'bot');
+            window.sendMessage = async () => {
+                const message = userInput.value.trim();
+                if (message === '') return;
+
+                displayMessage(message, 'user');
+                userInput.value = '';
+
+
+                try {
+                    const response = await fetch('http://127.0.0.1:5001/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message }),
+                    });
+
+                    if (!response.ok) {
+                        const message = await response.text();
+                        console.log(message);
+                        displayMessage("Sorry, I seem to be having trouble getting to you at the moment.", 'bot');
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                const data = await response.json();
+                const botMessage = data.response;
+                displayMessage(botMessage, 'bot');
+
+                } catch (error) {
+                    console.error('Error sending message to server:', error);
+                }
+            };
+
+            userInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    window.sendMessage();
+                }
+            });
+        });
+            
+        // function createHearts() {
+        //     const section = document.querySelector('.timeline-section');
+        //     const heart = document.createElement('div');
+        //     heart.classList.add('floating-heart');
+        //     heart.innerHTML = '♥';
+        //     heart.style.left = Math.random() * 100 + 'vw';
+        //     heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+        //     section.appendChild(heart);
+            
+        //     setTimeout(() => {
+        //         heart.remove();
+        //     }, 5000);
+        // }
+
+        // setInterval(createHearts, 300);
+    </script>
+</body>
+</html>
